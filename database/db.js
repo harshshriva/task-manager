@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const mongoURI = 'mongodb://127.0.0.1:27017/task-manager';
+const mongoURI = 'mongodb+srv://harshshrivastav139:VCO4YvJTzEFw6fKu@cluster0.w65mjxa.mongodb.net/';
 const options = {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
