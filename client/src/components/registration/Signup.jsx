@@ -5,74 +5,103 @@ import { useDispatch } from 'react-redux';
 import { register } from '../../redux/authSlice';
 
 const Signup = () => {
-	const dispatch = useDispatch();
-	const [state, setState] = useState({
-		email: '',
-		password: '',
-		username: '',
-	});
+    const dispatch = useDispatch();
+    const [state, setState] = useState({
+        email: '',
+        password: '',
+        username: '',
+    });
+    const [errors, setErrors] = useState({
+        email: '',
+        password: '',
+        username: '',
+    });
+    const [successMessage, setSuccessMessage] = useState('');
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
-		dispatch(
-			register({
-				username: state.username,
-				password: state.password,
-				email: state.email,
-			})
-		);
-	};
-	const handleChange = (e) => {
-		setState({
-			...state,
-			[e.target.name]: e.target.value,
-		});
-	};
+        if (!state.username) {
+            setErrors({ ...errors, username: 'Please enter your username' });
+            return;
+        }
+        if (!state.email) {
+            setErrors({ ...errors, email: 'Please enter your email' });
+            return;
+        }
+        if (!state.password) {
+            setErrors({ ...errors, password: 'Please enter your password' });
+            return;
+        }
 
-	console.log(state.email, state.password, state.username);
-	return (
-		<div className='signup-form'>
-			<div className='signup-form__wrapper'>
-				<form className='form' onSubmit={handleSubmit}>
-					<h4>Sign up</h4>
+        dispatch(
+            register({
+                username: state.username,
+                password: state.password,
+                email: state.email,
+            })
+        );
 
-					<div className='form-group'>
-						<input
-							type='text'
-							placeholder='Enter Name'
-							name='username'
-							value={state.username}
-							onChange={handleChange}
-						/>
-					</div>
-					<div className='form-group'>
-						<input
-							type='email'
-							name='email'
-							value={state.email}
-							id=''
-							placeholder='Enter Email'
-							onChange={handleChange}
-						/>
-					</div>
-					<div className='form-group'>
-						<input
-							type='password'
-							name='password'
-							value={state.password}
-							id=''
-							placeholder='Enter Password'
-							onChange={handleChange}
-						/>
-					</div>
-					<div className='form-group'>
-						<button className='button'>Sing Up</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	);
+        // Reset form and show success message
+        setState({ email: '', password: '', username: '' });
+        setSuccessMessage('Successfully signed up!');
+        setTimeout(() => {
+            setSuccessMessage('');
+        }, 3000); // Hide success message after 3 seconds
+    };
+
+    const handleChange = (e) => {
+        setState({
+            ...state,
+            [e.target.name]: e.target.value,
+        });
+        // Clear error message when user starts typing again
+        setErrors({ ...errors, [e.target.name]: '' });
+    };
+
+    return (
+        <div className='signup-form'>
+            <div className='signup-form__wrapper'>
+                <form className='form' onSubmit={handleSubmit}>
+                    <h4>Sign up</h4>
+                    <div className='form-group'>
+                        <input
+                            type='text'
+                            placeholder='Enter Name'
+                            name='username'
+                            value={state.username}
+                            onChange={handleChange}
+                        />
+                        {errors.username && <span className='error'>{errors.username}</span>}
+                    </div>
+                    <div className='form-group'>
+                        <input
+                            type='email'
+                            name='email'
+                            value={state.email}
+                            placeholder='Enter Email'
+                            onChange={handleChange}
+                        />
+                        {errors.email && <span className='error'>{errors.email}</span>}
+                    </div>
+                    <div className='form-group'>
+                        <input
+                            type='password'
+                            name='password'
+                            value={state.password}
+                            placeholder='Enter Password'
+                            onChange={handleChange}
+                        />
+                        {errors.password && <span className='error'>{errors.password}</span>}
+                    </div>
+                    <div className='form-group'>
+                        <button className='button'>Sign Up</button>
+                    </div>
+                </form>
+                {successMessage && <div className='success-message'>{successMessage}</div>}
+            </div>
+        </div>
+    );
 };
 
 export default Signup;

@@ -18,7 +18,7 @@ const Header = () => {
 	};
 	return (
 		<div>
-			<nav className='header'>
+			<nav className='header' >
 				<div className='header__logo'>
 					<h5>Task Manager</h5>
 				</div>

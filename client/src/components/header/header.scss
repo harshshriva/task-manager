@@ -1,22 +1,36 @@
 .header {
     display: flex;
     justify-content: space-between;
-    background-color: red;
+    background-color:orange;
     align-items: center;
     height: 60px;
     padding: 0 20px;
+    position: relative;
+    
 
     &__logo {
         h5 {
-            color: white;
+            color: rgb(12, 12, 12);
             font-weight: 300;
         }
     }
 
     .button {
-        background-color: white;
+        /* Your default button styles */
+        display: inline-block;
+        padding: 10px 20px;
+        background-color:#d8c049;
+        color: #484242;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
 
-    }
+      .button:hover {
+        /* Your button styles on hover */
+        background-color:#e3d58f; /* Change to desired hover color */
+      }
 
 
 }

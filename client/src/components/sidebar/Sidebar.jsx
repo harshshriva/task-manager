@@ -10,7 +10,7 @@ const Sidebar = () => {
 		<div>
 			<ul className='sidebar'>
 				<li className='list-item'>
-					<h5>{currentUser.username}</h5>
+					<h6>{currentUser.username}</h6>
 				</li>
 				<li className='list-item'>
 					<Link to='/dashboard'>Dashboard</Link>

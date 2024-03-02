@@ -8,4 +8,11 @@
     cursor: pointer;
     display: inline-block;
     text-align: center;
+    background-color:#d8c049;
+    transition: background-color 0.3s ease;
 }
+
+.button:hover {
+    /* Your button styles on hover */
+    background-color:#e3d58f; /* Change to desired hover color */
+  }
