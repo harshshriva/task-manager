@@ -10,6 +10,9 @@ const Sidebar = () => {
 		<div>
 			<ul className='sidebar'>
 				<li className='list-item'>
+					<h6>..........</h6>
+				</li>
+				<li className='list-item'>
 					<h6>{currentUser.username}</h6>
 				</li>
 				<li className='list-item'>

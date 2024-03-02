@@ -27,7 +27,7 @@ const Signin = () => {
 
         // Check if email and password are not empty
         if (!state.email || !state.password) {
-            setError(<h6>Please Enter Your Email and Password.</h6>);
+            setError(<h6 className='danger'>Please Enter Your Email and Password.</h6>);
             return;
         }
 
@@ -48,9 +48,9 @@ const Signin = () => {
             setError('');
 
             // Show success notification
-            notification.success({
-                message: 'Sign In Successful',
-                description: 'You have successfully signed in.',
+            notification.warning({
+                message: 'Not Found!',
+                description: 'Email And Password Not Found!',
 				placement: 'bottomRight',
 				duration:2,
 				role:"alert"
@@ -58,7 +58,7 @@ const Signin = () => {
         } catch (error) {
             // Handle sign in error here if needed
             console.error('Sign in error:', error);
-        }
+        } 
     };
 
     return (

@@ -18,19 +18,29 @@ const Signup = () => {
     });
     const [successMessage, setSuccessMessage] = useState('');
 
+    const validateEmail = (email) => {
+        // Regular expression for basic email validation
+        const re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
         if (!state.username) {
-            setErrors({ ...errors, username: 'Please enter your username' });
+            setErrors({ ...errors, username: <span className='danger'>Please enter your username</span> });
             return;
         }
         if (!state.email) {
-            setErrors({ ...errors, email: 'Please enter your email' });
+            setErrors({ ...errors, email: <span className='danger'>Please enter your email</span> });
+            return;
+        }
+        if (!validateEmail(state.email)) {
+            setErrors({ ...errors, email: <span className='danger'>Please enter a valid email address</span> });
             return;
         }
         if (!state.password) {
-            setErrors({ ...errors, password: 'Please enter your password' });
+            setErrors({ ...errors, password: <span className='danger'>Please enter your password</span>});
             return;
         }
 
