@@ -33,7 +33,6 @@ const Dashboard = () => {
 				</div>
 				<div className='dashboard__right'>
 					<div className='dashboard__rightContent'>
-						<h2>Task Status Dashboard</h2>
 						<div className='taskcount'>
 							<div className='todo box'>Todo - {pendingTask.length}</div>
 							<div className='done box'>Complete - {completedTask.length}</div>
